@@ -166,7 +166,7 @@ describe('useWorkspaceBilling', () => {
     it('exposes a null subscription before any status fetch', () => {
       const billing = setupBilling()
       expect(billing.subscription.value).toBeNull()
-      expect(billing.isActiveSubscription.value).toBe(false)
+      expect(billing.canAccessSubscriptionFeatures.value).toBe(false)
       expect(billing.isFreeTier.value).toBe(false)
     })
 
@@ -190,7 +190,7 @@ describe('useWorkspaceBilling', () => {
         isCancelled: true,
         hasFunds: true
       })
-      expect(billing.isActiveSubscription.value).toBe(true)
+      expect(billing.canAccessSubscriptionFeatures.value).toBe(true)
       expect(billing.isFreeTier.value).toBe(false)
     })
 

@@ -25,7 +25,7 @@ const {
   mockFilteredPendingInvites,
   mockIsPersonalWorkspace,
   mockIsSingleSeatPlan,
-  mockIsActiveSubscription,
+  mockCanAccessSubscriptionFeatures,
   mockActiveView,
   mockSearchQuery,
   mockPermissions,
@@ -41,7 +41,7 @@ const {
     mockFilteredPendingInvites: ref<PendingInvite[]>([]),
     mockIsPersonalWorkspace: ref(false),
     mockIsSingleSeatPlan: ref(false),
-    mockIsActiveSubscription: ref(true),
+    mockCanAccessSubscriptionFeatures: ref(true),
     mockActiveView: ref<'active' | 'pending'>('active'),
     mockSearchQuery: ref(''),
     mockPermissions: ref({
@@ -92,7 +92,7 @@ vi.mock('@/platform/workspace/composables/useMembersPanel', () => ({
     pendingInvites: mockPendingInvites,
     permissions: mockPermissions,
     uiConfig: mockUiConfig,
-    isActiveSubscription: mockIsActiveSubscription,
+    canAccessSubscriptionFeatures: mockCanAccessSubscriptionFeatures,
     userPhotoUrl: ref(null),
     isCurrentUser: (m: WorkspaceMember) =>
       m.email.toLowerCase() === 'owner@example.com',
@@ -177,7 +177,7 @@ describe('MembersPanelContent', () => {
     mockFilteredPendingInvites.value = []
     mockIsPersonalWorkspace.value = false
     mockIsSingleSeatPlan.value = false
-    mockIsActiveSubscription.value = true
+    mockCanAccessSubscriptionFeatures.value = true
     mockActiveView.value = 'active'
     mockSearchQuery.value = ''
     mockPermissions.value = {

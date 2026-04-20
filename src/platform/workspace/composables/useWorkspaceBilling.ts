@@ -35,7 +35,7 @@ export function useWorkspaceBilling(): BillingState & BillingActions {
   const statusData = shallowRef<BillingStatusResponse | null>(null)
   const balanceData = shallowRef<BillingBalanceResponse | null>(null)
 
-  const isActiveSubscription = computed(
+  const canAccessSubscriptionFeatures = computed(
     () => statusData.value?.is_active ?? false
   )
   const isFreeTier = computed(
@@ -261,7 +261,7 @@ export function useWorkspaceBilling(): BillingState & BillingActions {
 
   async function requireActiveSubscription(): Promise<void> {
     await fetchStatus()
-    if (!isActiveSubscription.value) {
+    if (!canAccessSubscriptionFeatures.value) {
       subscriptionDialog.show()
     }
   }
@@ -279,7 +279,7 @@ export function useWorkspaceBilling(): BillingState & BillingActions {
     currentPlanSlug,
     isLoading,
     error,
-    isActiveSubscription,
+    canAccessSubscriptionFeatures,
     isFreeTier,
     billingStatus,
     subscriptionStatus,

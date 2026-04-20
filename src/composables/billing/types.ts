@@ -73,7 +73,11 @@ export interface BillingState {
   currentPlanSlug: ComputedRef<string | null>
   isLoading: Ref<boolean>
   error: Ref<string | null>
-  isActiveSubscription: ComputedRef<boolean>
+  /**
+   * Convenience computed for checking if subscription is active.
+   * Equivalent to `subscription.value?.isActive ?? false`
+   */
+  canAccessSubscriptionFeatures: ComputedRef<boolean>
   isFreeTier: ComputedRef<boolean>
   billingStatus: ComputedRef<BillingStatus | null>
   subscriptionStatus: ComputedRef<BillingSubscriptionStatus | null>

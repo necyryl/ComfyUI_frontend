@@ -24,7 +24,7 @@ import type {
  */
 export function useLegacyBilling(): BillingState & BillingActions {
   const {
-    isActiveSubscription: legacyIsActiveSubscription,
+    canAccessSubscriptionFeatures: legacyCanAccessSubscriptionFeatures,
     subscriptionTier,
     subscriptionDuration,
     subscriptionStatus: legacySubscriptionStatus,
@@ -42,16 +42,18 @@ export function useLegacyBilling(): BillingState & BillingActions {
   const isLoading = ref(false)
   const error = ref<string | null>(null)
 
-  const isActiveSubscription = computed(() => legacyIsActiveSubscription.value)
+  const canAccessSubscriptionFeatures = computed(
+    () => legacyCanAccessSubscriptionFeatures.value
+  )
   const isFreeTier = computed(() => subscriptionTier.value === 'FREE')
 
   const subscription = computed<SubscriptionInfo | null>(() => {
-    if (!legacyIsActiveSubscription.value && !subscriptionTier.value) {
+    if (!legacyCanAccessSubscriptionFeatures.value && !subscriptionTier.value) {
       return null
     }
 
     return {
-      isActive: legacyIsActiveSubscription.value,
+      isActive: legacyCanAccessSubscriptionFeatures.value,
       tier: subscriptionTier.value,
       duration: subscriptionDuration.value,
       planSlug: null, // Legacy doesn't use plan slugs
@@ -82,7 +84,7 @@ export function useLegacyBilling(): BillingState & BillingActions {
   const billingStatus = computed<BillingStatus | null>(() => null)
   const subscriptionStatus = computed<BillingSubscriptionStatus | null>(() => {
     if (isCancelled.value) return 'canceled'
-    if (legacyIsActiveSubscription.value) return 'active'
+    if (legacyCanAccessSubscriptionFeatures.value) return 'active'
     return null
   })
   const tier = computed(() => subscriptionTier.value)
@@ -184,7 +186,7 @@ export function useLegacyBilling(): BillingState & BillingActions {
 
   async function requireActiveSubscription(): Promise<void> {
     await fetchStatus()
-    if (!isActiveSubscription.value) {
+    if (!canAccessSubscriptionFeatures.value) {
       legacyShowSubscriptionDialog()
     }
   }
@@ -202,7 +204,7 @@ export function useLegacyBilling(): BillingState & BillingActions {
     currentPlanSlug,
     isLoading,
     error,
-    isActiveSubscription,
+    canAccessSubscriptionFeatures,
     isFreeTier,
     billingStatus,
     subscriptionStatus,
