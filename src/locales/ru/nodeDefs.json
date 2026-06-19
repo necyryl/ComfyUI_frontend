@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "Продлите ранее сгенерированное Ray 3.2 видео вперёд (продолжить после него) или назад (добавить вступление перед ним). Подключите выход generation_id предыдущего узла Luma Ray 3.2. Продление всегда составляет 5 секунд.",
+    "display_name": "Luma Ray 3.2 Продлить видео",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "Вперёд — продолжить после предыдущего клипа; назад — добавить перед ним."
+      },
+      "direction_loop": {
+        "name": "loop"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Текстовый запрос для нового контента."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed для определения необходимости повторного запуска узла; результат всегда недетерминированный, независимо от seed."
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "generation_id предыдущего Ray 3.2 видео для продления. Подключите выход generation_id другого узла Luma Ray 3.2."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "Создайте видео из начального и/или конечного кадра с помощью модели Ray 3.2 от Luma. Генерация с привязкой к изображению всегда длится 5 секунд.",
+    "display_name": "Luma Ray 3.2 Изображение в видео",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "Последний кадр сгенерированного видео."
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "Сделать видео бесшовным по циклу. Недоступно, если задан end_frame."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Текстовый запрос для генерации видео."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed для определения необходимости повторного запуска узла; результат всегда недетерминированный, независимо от seed."
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "Первый кадр сгенерированного видео."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "Закрепите направляющее изображение в определённой позиции на временной шкале выходного видео Ray 3.2. Подключите этот узел к входу 'keyframes' узла Luma Ray 3.2 Keyframes to Video; объединяйте несколько узлов через дополнительный вход 'keyframes' ниже.",
+    "display_name": "Luma Ray 3.2 Ключевой кадр",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "Направляющее изображение для размещения в выбранный момент выходного видео."
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Необязательные предыдущие ключевые кадры для объединения с этим."
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "Как разместить это изображение на временной шкале выходного видео."
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "keyframes",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "Создайте видео, интерполируя последовательность направляющих изображений, каждое из которых привязано к определённой позиции на временной шкале, с помощью Luma Ray 3.2. Постройте последовательность с помощью узлов Luma Ray 3.2 Keyframe (не менее 2).",
+    "display_name": "Luma Ray 3.2: Ключевые кадры в видео",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Последовательность ключевых кадров из узлов Luma Ray 3.2 Keyframe (не менее 2)."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Текстовый запрос для генерации видео."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Сид для определения необходимости повторного запуска узла; результат всегда недетерминирован, независимо от сида."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "Создайте видео по текстовому запросу с помощью модели Luma Ray 3.2.",
+    "display_name": "Luma Ray 3.2: Текст в видео",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "Сделать видео бесшовным по циклу. Доступно только для длительности 5 секунд."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Текстовый запрос для генерации видео."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Сид для определения необходимости повторного запуска узла; результат всегда недетерминирован, независимо от сида."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "Перегенерируйте существующее видео по новому запросу с помощью Luma Ray 3.2 (смена стиля, освещения, добавление или удаление элементов), сохраняя исходное движение. Исходное видео — до 18 секунд; длина отредактированного видео совпадает с исходным.",
+    "display_name": "Luma Ray 3.2: Редактирование видео",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Опишите желаемое изменение."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Сид для определения необходимости повторного запуска узла; результат всегда недетерминирован, независимо от сида."
+      },
+      "strength": {
+        "name": "strength",
+        "tooltip": "Степень сохранения или переосмысления исходного видео. 'auto' — выбор Ray 3.2; adhere_* — максимальное сохранение, flex_* — баланс, reimagine_* — максимальные изменения."
+      },
+      "video": {
+        "name": "video",
+        "tooltip": "Исходное видео для редактирования. До 18 секунд."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "Измените соотношение сторон существующего видео, используя Luma Ray 3.2 для заполнения новых областей холста. Исходное видео до 30 секунд. Оплата за каждую секунду результата.",
+    "display_name": "Luma Ray 3.2 Видео Кадрирование",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "соотношение сторон"
+      },
+      "control_after_generate": {
+        "name": "контроль после генерации"
+      },
+      "prompt": {
+        "name": "промпт",
+        "tooltip": "Опишите, как должны быть заполнены новые области холста."
+      },
+      "resolution": {
+        "name": "разрешение"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed для определения необходимости повторного запуска узла; результаты недетерминированы независимо от seed."
+      },
+      "video": {
+        "name": "видео",
+        "tooltip": "Исходное видео для кадрирования. До 30 секунд."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "Содержит изображение и вес для использования с узлом Luma Generate Image.",
     "display_name": "Luma Reference",

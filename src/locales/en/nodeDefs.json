@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "display_name": "Luma Ray 3.2 Extend Video",
+    "description": "Extend a previous Ray 3.2 generation forward (continue after it) or backward (lead-in before it). Connect the generation_id output of a prior Luma Ray 3.2 node. Extensions are always 5 seconds.",
+    "inputs": {
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "generation_id of the prior Ray 3.2 video to extend. Connect the generation_id output of another Luma Ray 3.2 node."
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "Forward continues after the prior clip; backward is prepended before it."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Text prompt for the new content."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "direction_loop": {
+        "name": "loop"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "display_name": "Luma Ray 3.2 Image to Video",
+    "description": "Generate a video from a start and/or end frame using Luma's Ray 3.2 model. Image-anchored generations are always 5 seconds.",
+    "inputs": {
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Text prompt for the video generation."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "Make the video loop seamlessly. Not available when an end_frame is set."
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "First frame of the generated video."
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "Last frame of the generated video."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "display_name": "Luma Ray 3.2 Keyframe",
+    "description": "Anchor a guide image to a position on the Ray 3.2 output video timeline. Connect this to the 'keyframes' input of the Luma Ray 3.2 Keyframes to Video node; chain several together via the optional 'keyframes' input below.",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "Guide image to place at the chosen moment of the output video."
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "How to place this image on the output video's timeline."
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Optional earlier keyframes to chain with this one."
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "keyframes",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "display_name": "Luma Ray 3.2 Keyframes to Video",
+    "description": "Generate a video that interpolates through a sequence of guide images, each anchored to a position on the timeline, using Luma Ray 3.2. Build the sequence with Luma Ray 3.2 Keyframe nodes (at least 2).",
+    "inputs": {
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Text prompt for the video generation."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Keyframe sequence from Luma Ray 3.2 Keyframe nodes (at least 2)."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "display_name": "Luma Ray 3.2 Text to Video",
+    "description": "Generate a video from a text prompt using Luma's Ray 3.2 model.",
+    "inputs": {
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Text prompt for the video generation."
+      },
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "Make the video loop seamlessly. Only available with 5s duration."
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "display_name": "Luma Ray 3.2 Video Edit",
+    "description": "Re-render an existing video under a new prompt using Luma Ray 3.2 (restyle, relight, add or remove elements) while keeping the original motion. Source video up to 18 seconds; the edited video keeps the source's length.",
+    "inputs": {
+      "video": {
+        "name": "video",
+        "tooltip": "Source video to edit. Up to 18 seconds."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Describes the desired edit."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "strength": {
+        "name": "strength",
+        "tooltip": "How strongly to preserve vs. reimagine the source. 'auto' lets Ray 3.2 choose; adhere_* preserves the most, flex_* is balanced, reimagine_* changes the most."
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "display_name": "Luma Ray 3.2 Video Reframe",
+    "description": "Change the aspect ratio of an existing video, using Luma Ray 3.2 to fill the newly exposed canvas areas. Source video up to 30 seconds. Billed per second of output.",
+    "inputs": {
+      "video": {
+        "name": "video",
+        "tooltip": "Source video to reframe. Up to 30 seconds."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Describes how the newly exposed canvas areas should be filled."
+      },
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed to determine if node should re-run; results are nondeterministic regardless of seed."
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "display_name": "Luma Reference",
     "description": "Holds an image and weight for use with Luma Generate Image node.",

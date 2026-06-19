@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "یک تولید قبلی Ray 3.2 را به جلو (ادامه پس از آن) یا به عقب (قبل از آن) گسترش دهید. خروجی generation_id یک نود Luma Ray 3.2 قبلی را متصل کنید. هر گسترش همیشه ۵ ثانیه است.",
+    "display_name": "Luma Ray 3.2 گسترش ویدیو",
+    "inputs": {
+      "control_after_generate": {
+        "name": "کنترل پس از تولید"
+      },
+      "direction": {
+        "name": "جهت",
+        "tooltip": "جلو به معنای ادامه پس از کلیپ قبلی است؛ عقب به معنای اضافه شدن قبل از آن است."
+      },
+      "direction_loop": {
+        "name": "حلقه"
+      },
+      "prompt": {
+        "name": "پرامپت",
+        "tooltip": "پرامپت متنی برای محتوای جدید."
+      },
+      "resolution": {
+        "name": "رزولوشن"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed برای تعیین اینکه آیا node باید دوباره اجرا شود؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "generation_id ویدیوی قبلی Ray 3.2 برای گسترش. خروجی generation_id یک نود دیگر Luma Ray 3.2 را متصل کنید."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "تولید ویدیو از یک فریم شروع و/یا پایان با استفاده از مدل Ray 3.2 لومـا. تولیدات مبتنی بر تصویر همیشه ۵ ثانیه هستند.",
+    "display_name": "Luma Ray 3.2 تصویر به ویدیو",
+    "inputs": {
+      "control_after_generate": {
+        "name": "کنترل پس از تولید"
+      },
+      "end_frame": {
+        "name": "فریم پایان",
+        "tooltip": "آخرین فریم ویدیوی تولید شده."
+      },
+      "loop": {
+        "name": "حلقه",
+        "tooltip": "ویدیو را به صورت بی‌وقفه حلقه‌ای کنید. زمانی که end_frame تنظیم شده باشد، در دسترس نیست."
+      },
+      "prompt": {
+        "name": "پرامپت",
+        "tooltip": "پرامپت متنی برای تولید ویدیو."
+      },
+      "resolution": {
+        "name": "رزولوشن"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed برای تعیین اینکه آیا node باید دوباره اجرا شود؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      },
+      "start_frame": {
+        "name": "فریم شروع",
+        "tooltip": "اولین فریم ویدیوی تولید شده."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "یک تصویر راهنما را به موقعیتی در تایم‌لاین ویدیوی خروجی Ray 3.2 متصل کنید. این را به ورودی 'keyframes' نود Luma Ray 3.2 Keyframes to Video متصل کنید؛ چندین مورد را می‌توانید از طریق ورودی اختیاری 'keyframes' زیر به هم زنجیر کنید.",
+    "display_name": "Luma Ray 3.2 کی‌فریم",
+    "inputs": {
+      "image": {
+        "name": "تصویر",
+        "tooltip": "تصویر راهنما برای قرار دادن در لحظه انتخاب‌شده از ویدیوی خروجی."
+      },
+      "keyframes": {
+        "name": "کی‌فریم‌ها",
+        "tooltip": "کی‌فریم‌های قبلی اختیاری برای زنجیر شدن با این مورد."
+      },
+      "position": {
+        "name": "موقعیت",
+        "tooltip": "نحوه قرار دادن این تصویر در تایم‌لاین ویدیوی خروجی."
+      },
+      "position_fraction": {
+        "name": "کسر"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "کی‌فریم‌ها",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "تولید یک ویدیو که از طریق دنباله‌ای از تصاویر راهنما، هر یک در موقعیتی روی خط زمان قرار دارند، با استفاده از Luma Ray 3.2 در آن میان‌یابی می‌شود. دنباله را با نودهای Luma Ray 3.2 Keyframe (حداقل ۲ عدد) بسازید.",
+    "display_name": "Luma Ray 3.2 تبدیل کلیدفریم‌ها به ویدیو",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "دنباله کلیدفریم از نودهای Luma Ray 3.2 Keyframe (حداقل ۲ عدد)."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "پرامپت متنی برای تولید ویدیو."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed برای تعیین اینکه آیا node باید دوباره اجرا شود؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "تولید ویدیو از یک پرامپت متنی با استفاده از مدل Ray 3.2 شرکت Luma.",
+    "display_name": "Luma Ray 3.2 تبدیل متن به ویدیو",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "ویدیو را به صورت بی‌وقفه تکرارپذیر کنید. فقط برای مدت زمان ۵ ثانیه در دسترس است."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "پرامپت متنی برای تولید ویدیو."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed برای تعیین اینکه آیا node باید دوباره اجرا شود؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "بازپرداخت یک ویدیو موجود با یک پرامپت جدید با استفاده از Luma Ray 3.2 (تغییر سبک، نورپردازی، افزودن یا حذف عناصر) در حالی که حرکت اصلی حفظ می‌شود. ویدیوی منبع تا ۱۸ ثانیه؛ ویدیوی ویرایش‌شده طول منبع را حفظ می‌کند.",
+    "display_name": "Luma Ray 3.2 ویرایش ویدیو",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "توضیح ویرایش مورد نظر."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Seed برای تعیین اینکه آیا node باید دوباره اجرا شود؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      },
+      "strength": {
+        "name": "strength",
+        "tooltip": "میزان حفظ یا بازآفرینی ویدیوی منبع. مقدار 'auto' به Ray 3.2 اجازه انتخاب می‌دهد؛ adhere_* بیشترین حفظ، flex_* متعادل، reimagine_* بیشترین تغییر را اعمال می‌کند."
+      },
+      "video": {
+        "name": "video",
+        "tooltip": "ویدیوی منبع برای ویرایش. تا ۱۸ ثانیه."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "نسبت تصویر یک ویدیوی موجود را تغییر دهید و با استفاده از Luma Ray 3.2 نواحی جدید بوم را پر کنید. ویدیوی منبع تا ۳۰ ثانیه. هزینه بر اساس هر ثانیه خروجی محاسبه می‌شود.",
+    "display_name": "تغییر قاب ویدیو با Luma Ray 3.2",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "نسبت تصویر"
+      },
+      "control_after_generate": {
+        "name": "کنترل پس از تولید"
+      },
+      "prompt": {
+        "name": "پرامپت",
+        "tooltip": "توضیح می‌دهد که نواحی جدید بوم چگونه باید پر شوند."
+      },
+      "resolution": {
+        "name": "رزولوشن"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "seed برای تعیین اینکه node باید دوباره اجرا شود یا خیر؛ نتایج صرف‌نظر از seed غیرقطعی هستند."
+      },
+      "video": {
+        "name": "ویدیو",
+        "tooltip": "ویدیوی منبع برای تغییر قاب. تا ۳۰ ثانیه."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "شناسه تولید",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "یک تصویر و وزن را برای استفاده در node تولید تصویر لاما نگه می‌دارد.",
     "display_name": "مرجع لاما",

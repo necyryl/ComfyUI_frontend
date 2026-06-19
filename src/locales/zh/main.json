@@ -871,6 +871,7 @@
     "LORA_MODEL": "LORA模型",
     "LOSS_MAP": "损失图",
     "LUMA_CONCEPTS": "Luma 概念",
+    "LUMA_RAY32_KEYFRAME": "LUMA_RAY32_KEYFRAME",
     "LUMA_REF": "Luma 参考",
     "MASK": "遮罩",
     "MESH": "网格",

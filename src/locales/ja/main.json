@@ -871,6 +871,7 @@
     "LORA_MODEL": "LoRAモデル",
     "LOSS_MAP": "損失マップ",
     "LUMA_CONCEPTS": "Lumaコンセプト",
+    "LUMA_RAY32_KEYFRAME": "LUMA_RAY32_KEYFRAME",
     "LUMA_REF": "Luma参照",
     "MASK": "マスク",
     "MESH": "メッシュ",

@@ -871,6 +871,7 @@
     "LORA_MODEL": "LORA_MODEL",
     "LOSS_MAP": "LOSS_MAP",
     "LUMA_CONCEPTS": "Luma 컨셉",
+    "LUMA_RAY32_KEYFRAME": "LUMA_RAY32_KEYFRAME",
     "LUMA_REF": "Luma 참조",
     "MASK": "마스크",
     "MESH": "메시",

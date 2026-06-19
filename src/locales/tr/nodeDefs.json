@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "Önceki bir Ray 3.2 üretimini ileriye (sonrasına devam) veya geriye (öncesine giriş) doğru uzatın. Önceki bir Luma Ray 3.2 düğümünün generation_id çıktısını bağlayın. Uzatmalar her zaman 5 saniyedir.",
+    "display_name": "Luma Ray 3.2 Video Uzat",
+    "inputs": {
+      "control_after_generate": {
+        "name": "oluşturduktan sonra kontrol"
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "İleri, önceki clip'ten sonra devam eder; geri, onun önüne eklenir."
+      },
+      "direction_loop": {
+        "name": "döngü"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Yeni içerik için metin istemi."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirlemek için seed; seed ne olursa olsun sonuçlar deterministik değildir."
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "Uzatılacak önceki Ray 3.2 videonun generation_id'si. Başka bir Luma Ray 3.2 düğümünün generation_id çıktısını bağlayın."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "Luma'nın Ray 3.2 modeliyle bir başlangıç ve/veya bitiş karesi kullanarak video oluşturun. Görsele sabitlenen üretimler her zaman 5 saniyedir.",
+    "display_name": "Luma Ray 3.2 Görselden Videoya",
+    "inputs": {
+      "control_after_generate": {
+        "name": "oluşturduktan sonra kontrol"
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "Oluşturulan videonun son karesi."
+      },
+      "loop": {
+        "name": "döngü",
+        "tooltip": "Videoyu kusursuz bir şekilde döngüye sokar. end_frame ayarlandığında kullanılamaz."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Video üretimi için metin istemi."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirlemek için seed; seed ne olursa olsun sonuçlar deterministik değildir."
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "Oluşturulan videonun ilk karesi."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "Ray 3.2 çıktı videosu zaman çizelgesinde bir konuma rehber görsel sabitleyin. Bunu Luma Ray 3.2 Ana Karelerden Videoya düğümünün 'keyframes' girişine bağlayın; aşağıdaki isteğe bağlı 'keyframes' girişiyle birkaçını zincirleyin.",
+    "display_name": "Luma Ray 3.2 Ana Kare",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "Çıktı videosunun seçilen anına yerleştirilecek rehber görsel."
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Bununla zincirlenebilecek isteğe bağlı önceki ana kareler."
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "Bu görselin çıktı video zaman çizelgesinde nasıl yerleştirileceği."
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "keyframes",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "Her biri zaman çizelgesinde bir konuma sabitlenmiş rehber görseller dizisi arasında geçiş yapan bir video oluşturun. Luma Ray 3.2 Anahtar Kare düğümleriyle (en az 2 adet) diziyi oluşturun.",
+    "display_name": "Luma Ray 3.2 Anahtar Karelerden Videoya",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "Luma Ray 3.2 Anahtar Kare düğümlerinden anahtar kare dizisi (en az 2 adet)."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Video oluşturma için metin istemi."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirleyen tohum; sonuçlar tohumdan bağımsız olarak rastgeledir."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "Luma'nın Ray 3.2 modeliyle bir metin isteminden video oluşturun.",
+    "display_name": "Luma Ray 3.2 Metinden Videoya",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "duration": {
+        "name": "duration"
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "Videoyu kesintisiz döngü haline getirir. Sadece 5 saniyelik sürede kullanılabilir."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Video oluşturma için metin istemi."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirleyen tohum; sonuçlar tohumdan bağımsız olarak rastgeledir."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "Mevcut bir videoyu yeni bir istemle Luma Ray 3.2 kullanarak yeniden oluşturun (yeniden stillendirme, yeniden aydınlatma, öğe ekleme veya çıkarma) ve orijinal hareketi koruyun. Kaynak video en fazla 18 saniye olabilir; düzenlenen video kaynağın süresini korur.",
+    "display_name": "Luma Ray 3.2 Video Düzenle",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "İstenen düzenlemeyi tanımlar."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirleyen tohum; sonuçlar tohumdan bağımsız olarak rastgeledir."
+      },
+      "strength": {
+        "name": "strength",
+        "tooltip": "Kaynağı ne kadar koruyacağı veya yeniden hayal edeceği. 'auto' Ray 3.2'nin seçmesine izin verir; adhere_* en çok korur, flex_* dengelidir, reimagine_* en çok değiştirir."
+      },
+      "video": {
+        "name": "video",
+        "tooltip": "Düzenlenecek kaynak video. En fazla 18 saniye."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "Mevcut bir videonun en-boy oranını değiştirin, yeni açığa çıkan tuval alanlarını doldurmak için Luma Ray 3.2 kullanılır. Kaynak video en fazla 30 saniye. Çıktı saniyesi başına ücretlendirilir.",
+    "display_name": "Luma Ray 3.2 Video Yeniden Çerçeveleme",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "en-boy oranı"
+      },
+      "control_after_generate": {
+        "name": "oluşturduktan sonra kontrol et"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Yeni açığa çıkan tuval alanlarının nasıl doldurulacağını açıklar."
+      },
+      "resolution": {
+        "name": "çözünürlük"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Düğümün tekrar çalıştırılıp çalıştırılmayacağını belirleyen seed; seed ne olursa olsun sonuçlar deterministik değildir."
+      },
+      "video": {
+        "name": "video",
+        "tooltip": "Yeniden çerçevelenecek kaynak video. En fazla 30 saniye."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "Luma Görüntü Oluştur düğümüyle kullanılmak üzere bir görüntü ve ağırlık tutar.",
     "display_name": "Luma Referansı",

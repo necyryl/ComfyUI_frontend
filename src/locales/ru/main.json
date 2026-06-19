@@ -871,6 +871,7 @@
     "LORA_MODEL": "МОДЕЛЬ_LORA",
     "LOSS_MAP": "КАРТА_ПОТЕРЬ",
     "LUMA_CONCEPTS": "LUMA_CONCEPTS",
+    "LUMA_RAY32_KEYFRAME": "LUMA_RAY32_KEYFRAME",
     "LUMA_REF": "LUMA_REF",
     "MASK": "МАСКА",
     "MESH": "СЕТКА",

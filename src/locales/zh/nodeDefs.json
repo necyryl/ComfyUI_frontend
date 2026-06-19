@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "将之前的 Ray 3.2 生成结果向前（在其后继续）或向后（在其前引入）扩展。请连接前一个 Luma Ray 3.2 节点的 generation_id 输出。每次扩展均为 5 秒。",
+    "display_name": "Luma Ray 3.2 视频扩展",
+    "inputs": {
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "Forward 表示在前一个 clip 后继续；backward 表示在其前插入。"
+      },
+      "direction_loop": {
+        "name": "循环"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "新内容的文本提示。"
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "用于决定节点是否重新运行的种子；无论 seed 如何，结果都是非确定性的。"
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "要扩展的视频的 Ray 3.2 generation_id。请连接另一个 Luma Ray 3.2 节点的 generation_id 输出。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "使用 Luma 的 Ray 3.2 模型从起始帧和/或结束帧生成视频。基于图像锚点的生成时长均为 5 秒。",
+    "display_name": "Luma Ray 3.2 图像转视频",
+    "inputs": {
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "生成视频的最后一帧。"
+      },
+      "loop": {
+        "name": "循环",
+        "tooltip": "使视频无缝循环。当设置了 end_frame 时不可用。"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "视频生成的文本提示。"
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "用于决定节点是否重新运行的种子；无论 seed 如何，结果都是非确定性的。"
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "生成视频的第一帧。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "将引导图像锚定到 Ray 3.2 输出视频时间线上指定位置。请将此节点连接到 Luma Ray 3.2 关键帧转视频节点的 'keyframes' 输入；可通过下方可选的 'keyframes' 输入将多个关键帧串联。",
+    "display_name": "Luma Ray 3.2 关键帧",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "要放置在输出视频指定时刻的引导图像。"
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "可选的前序关键帧，用于与当前关键帧串联。"
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "如何将该图像放置在输出视频的时间线上。"
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "keyframes",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "使用 Luma Ray 3.2，通过插值一系列锚定在时间轴上的引导图像，生成视频。请使用 Luma Ray 3.2 关键帧节点（至少 2 个）构建序列。",
+    "display_name": "Luma Ray 3.2 关键帧转视频",
+    "inputs": {
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "duration": {
+        "name": "时长"
+      },
+      "keyframes": {
+        "name": "关键帧",
+        "tooltip": "来自 Luma Ray 3.2 关键帧节点的关键帧序列（至少 2 个）。"
+      },
+      "prompt": {
+        "name": "提示词",
+        "tooltip": "用于视频生成的文本提示。"
+      },
+      "resolution": {
+        "name": "分辨率"
+      },
+      "seed": {
+        "name": "种子",
+        "tooltip": "用于决定节点是否重新运行的种子；无论种子如何，结果都是非确定性的。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "使用 Luma 的 Ray 3.2 模型，根据文本提示生成视频。",
+    "display_name": "Luma Ray 3.2 文本转视频",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "宽高比"
+      },
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "duration": {
+        "name": "时长"
+      },
+      "loop": {
+        "name": "循环",
+        "tooltip": "使视频无缝循环。仅在 5 秒时长可用。"
+      },
+      "prompt": {
+        "name": "提示词",
+        "tooltip": "用于视频生成的文本提示。"
+      },
+      "resolution": {
+        "name": "分辨率"
+      },
+      "seed": {
+        "name": "种子",
+        "tooltip": "用于决定节点是否重新运行的种子；无论种子如何，结果都是非确定性的。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "使用 Luma Ray 3.2 在新提示下重新渲染已有视频（可重绘风格、重打光、添加或移除元素），同时保持原有运动。源视频最长 18 秒；编辑后的视频保持原长度。",
+    "display_name": "Luma Ray 3.2 视频编辑",
+    "inputs": {
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "prompt": {
+        "name": "提示词",
+        "tooltip": "描述期望的编辑效果。"
+      },
+      "resolution": {
+        "name": "分辨率"
+      },
+      "seed": {
+        "name": "种子",
+        "tooltip": "用于决定节点是否重新运行的种子；无论种子如何，结果都是非确定性的。"
+      },
+      "strength": {
+        "name": "强度",
+        "tooltip": "保留原视频与重新想象的程度。'auto' 由 Ray 3.2 自动选择；adher_* 保留最多，flex_* 平衡，reimagine_* 变化最大。"
+      },
+      "video": {
+        "name": "视频",
+        "tooltip": "要编辑的源视频。最长 18 秒。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "更改现有视频的宽高比，使用 Luma Ray 3.2 填充新暴露的画布区域。源视频最长 30 秒。按输出秒数计费。",
+    "display_name": "Luma Ray 3.2 视频重构",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "宽高比"
+      },
+      "control_after_generate": {
+        "name": "生成后控制"
+      },
+      "prompt": {
+        "name": "提示词",
+        "tooltip": "描述如何填充新暴露的画布区域。"
+      },
+      "resolution": {
+        "name": "分辨率"
+      },
+      "seed": {
+        "name": "种子",
+        "tooltip": "用于决定节点是否重新运行的种子；无论种子如何，结果都是非确定性的。"
+      },
+      "video": {
+        "name": "视频",
+        "tooltip": "要重构的源视频。最长 30 秒。"
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "用于 Luma 生成图像节点，包含一张图片和权重。",
     "display_name": "Luma 参考",

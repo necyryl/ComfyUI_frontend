@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "이전 Ray 3.2 생성 결과를 앞으로(이후 계속) 또는 뒤로(이전 리드인) 확장합니다. 이전 Luma Ray 3.2 노드의 generation_id 출력을 연결하세요. 확장 길이는 항상 5초입니다.",
+    "display_name": "Luma Ray 3.2 비디오 확장",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "Forward는 이전 clip 이후로 계속 진행하며, backward는 그 이전에 추가됩니다."
+      },
+      "direction_loop": {
+        "name": "loop"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "새로운 콘텐츠를 위한 텍스트 프롬프트입니다."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "노드를 다시 실행할지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "확장할 이전 Ray 3.2 비디오의 generation_id입니다. 다른 Luma Ray 3.2 노드의 generation_id 출력을 연결하세요."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "Luma의 Ray 3.2 모델을 사용하여 시작 및/또는 종료 프레임에서 비디오를 생성합니다. 이미지 기반 생성은 항상 5초입니다.",
+    "display_name": "Luma Ray 3.2 이미지 → 비디오",
+    "inputs": {
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "생성된 비디오의 마지막 프레임입니다."
+      },
+      "loop": {
+        "name": "loop",
+        "tooltip": "비디오가 자연스럽게 반복되도록 만듭니다. end_frame이 설정된 경우에는 사용할 수 없습니다."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "비디오 생성을 위한 텍스트 프롬프트입니다."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "노드를 다시 실행할지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "생성된 비디오의 첫 프레임입니다."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "Ray 3.2 출력 비디오 타임라인의 위치에 가이드 이미지를 고정합니다. 이 노드를 Luma Ray 3.2 Keyframes to Video 노드의 'keyframes' 입력에 연결하세요. 아래의 선택적 'keyframes' 입력을 통해 여러 개를 연쇄할 수 있습니다.",
+    "display_name": "Luma Ray 3.2 키프레임",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "출력 비디오의 원하는 시점에 배치할 가이드 이미지입니다."
+      },
+      "keyframes": {
+        "name": "keyframes",
+        "tooltip": "이전 키프레임을 이 키프레임과 연쇄할 때 선택적으로 사용합니다."
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "이 이미지를 출력 비디오 타임라인에 어떻게 배치할지 설정합니다."
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "keyframes",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "Luma Ray 3.2를 사용하여 타임라인의 위치에 고정된 가이드 이미지 시퀀스를 보간하여 비디오를 생성합니다. Luma Ray 3.2 Keyframe 노드(최소 2개)로 시퀀스를 구성하세요.",
+    "display_name": "Luma Ray 3.2 키프레임에서 비디오로",
+    "inputs": {
+      "control_after_generate": {
+        "name": "생성 후 제어"
+      },
+      "duration": {
+        "name": "길이"
+      },
+      "keyframes": {
+        "name": "키프레임",
+        "tooltip": "Luma Ray 3.2 Keyframe 노드(최소 2개)에서 가져온 키프레임 시퀀스입니다."
+      },
+      "prompt": {
+        "name": "프롬프트",
+        "tooltip": "비디오 생성을 위한 텍스트 프롬프트입니다."
+      },
+      "resolution": {
+        "name": "해상도"
+      },
+      "seed": {
+        "name": "시드",
+        "tooltip": "노드를 다시 실행할지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "Luma의 Ray 3.2 모델을 사용하여 텍스트 프롬프트로부터 비디오를 생성합니다.",
+    "display_name": "Luma Ray 3.2 텍스트에서 비디오로",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "화면비"
+      },
+      "control_after_generate": {
+        "name": "생성 후 제어"
+      },
+      "duration": {
+        "name": "길이"
+      },
+      "loop": {
+        "name": "루프",
+        "tooltip": "비디오가 자연스럽게 반복되도록 만듭니다. 5초 길이에서만 사용 가능합니다."
+      },
+      "prompt": {
+        "name": "프롬프트",
+        "tooltip": "비디오 생성을 위한 텍스트 프롬프트입니다."
+      },
+      "resolution": {
+        "name": "해상도"
+      },
+      "seed": {
+        "name": "시드",
+        "tooltip": "노드를 다시 실행할지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "Luma Ray 3.2를 사용하여 기존 비디오를 새로운 프롬프트로 다시 렌더링합니다(스타일 변경, 조명 변경, 요소 추가/제거 등). 원본 모션은 유지됩니다. 소스 비디오는 최대 18초까지 지원하며, 편집된 비디오는 원본과 동일한 길이를 가집니다.",
+    "display_name": "Luma Ray 3.2 비디오 편집",
+    "inputs": {
+      "control_after_generate": {
+        "name": "생성 후 제어"
+      },
+      "prompt": {
+        "name": "프롬프트",
+        "tooltip": "원하는 편집 내용을 설명합니다."
+      },
+      "resolution": {
+        "name": "해상도"
+      },
+      "seed": {
+        "name": "시드",
+        "tooltip": "노드를 다시 실행할지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      },
+      "strength": {
+        "name": "강도",
+        "tooltip": "원본을 얼마나 강하게 유지할지 또는 재구성할지 설정합니다. 'auto'는 Ray 3.2가 자동으로 선택합니다. adhere_*는 가장 많이 보존, flex_*는 균형, reimagine_*는 가장 많이 변경합니다."
+      },
+      "video": {
+        "name": "비디오",
+        "tooltip": "편집할 소스 비디오입니다. 최대 18초."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "기존 비디오의 종횡비를 변경하고, 새로 노출된 캔버스 영역을 Luma Ray 3.2로 채웁니다. 소스 비디오는 최대 30초까지 지원됩니다. 출력 초당 과금됩니다.",
+    "display_name": "Luma Ray 3.2 비디오 리프레임",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "aspect_ratio"
+      },
+      "control_after_generate": {
+        "name": "control after generate"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "새로 노출된 캔버스 영역을 어떻게 채울지 설명합니다."
+      },
+      "resolution": {
+        "name": "resolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "노드가 다시 실행되어야 하는지 결정하는 시드입니다. 시드와 관계없이 결과는 비결정적입니다."
+      },
+      "video": {
+        "name": "video",
+        "tooltip": "리프레임할 소스 비디오입니다. 최대 30초까지 지원됩니다."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "Luma 이미지 생성 노드에서 사용할 이미지와 가중치를 보관합니다.",
     "display_name": "Luma 이미지 참조",

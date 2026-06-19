@@ -9747,6 +9747,262 @@
       }
     }
   },
+  "LumaRay32ExtendVideoNode": {
+    "description": "Prolongez une génération Ray 3.2 précédente vers l'avant (continuer après) ou vers l'arrière (ajouter avant). Connectez la sortie generation_id d'un nœud Luma Ray 3.2 précédent. Les extensions durent toujours 5 secondes.",
+    "display_name": "Luma Ray 3.2 Extension Vidéo",
+    "inputs": {
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "direction": {
+        "name": "direction",
+        "tooltip": "Avant continue après le clip précédent ; arrière est ajouté avant celui-ci."
+      },
+      "direction_loop": {
+        "name": "boucle"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Invite textuelle pour le nouveau contenu."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit le seed."
+      },
+      "source_generation_id": {
+        "name": "source_generation_id",
+        "tooltip": "generation_id de la vidéo Ray 3.2 précédente à étendre. Connectez la sortie generation_id d'un autre nœud Luma Ray 3.2."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32ImageToVideoNode": {
+    "description": "Générez une vidéo à partir d'une image de début et/ou de fin en utilisant le modèle Ray 3.2 de Luma. Les générations ancrées sur une image durent toujours 5 secondes.",
+    "display_name": "Luma Ray 3.2 Image vers Vidéo",
+    "inputs": {
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "end_frame": {
+        "name": "end_frame",
+        "tooltip": "Dernière image de la vidéo générée."
+      },
+      "loop": {
+        "name": "boucle",
+        "tooltip": "Rendre la vidéo en boucle de façon transparente. Non disponible si une end_frame est définie."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Invite textuelle pour la génération vidéo."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit le seed."
+      },
+      "start_frame": {
+        "name": "start_frame",
+        "tooltip": "Première image de la vidéo générée."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "generation_id",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframeNode": {
+    "description": "Ancrez une image guide à une position sur la timeline de la vidéo générée par Ray 3.2. Connectez ce nœud à l'entrée 'keyframes' du nœud Luma Ray 3.2 Images Clés vers Vidéo ; enchaînez-en plusieurs via l'entrée optionnelle 'keyframes' ci-dessous.",
+    "display_name": "Luma Ray 3.2 Image Clé",
+    "inputs": {
+      "image": {
+        "name": "image",
+        "tooltip": "Image guide à placer au moment choisi sur la vidéo de sortie."
+      },
+      "keyframes": {
+        "name": "images clés",
+        "tooltip": "Images clés précédentes optionnelles à enchaîner avec celle-ci."
+      },
+      "position": {
+        "name": "position",
+        "tooltip": "Comment placer cette image sur la timeline de la vidéo de sortie."
+      },
+      "position_fraction": {
+        "name": "fraction"
+      }
+    },
+    "outputs": {
+      "0": {
+        "name": "images clés",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32KeyframesToVideoNode": {
+    "description": "Générez une vidéo qui interpole à travers une séquence d’images guides, chacune étant ancrée à une position sur la timeline, en utilisant Luma Ray 3.2. Construisez la séquence avec des nœuds Luma Ray 3.2 Keyframe (au moins 2).",
+    "display_name": "Luma Ray 3.2 Images clés vers vidéo",
+    "inputs": {
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "duration": {
+        "name": "durée"
+      },
+      "keyframes": {
+        "name": "images clés",
+        "tooltip": "Séquence d’images clés provenant des nœuds Luma Ray 3.2 Keyframe (au moins 2)."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Invite textuelle pour la génération de la vidéo."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit le seed."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "identifiant_génération",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32TextToVideoNode": {
+    "description": "Générez une vidéo à partir d’une invite textuelle en utilisant le modèle Ray 3.2 de Luma.",
+    "display_name": "Luma Ray 3.2 Texte vers vidéo",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "ratio d’aspect"
+      },
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "duration": {
+        "name": "durée"
+      },
+      "loop": {
+        "name": "boucle",
+        "tooltip": "Rendre la vidéo en boucle de façon transparente. Disponible uniquement pour une durée de 5s."
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Invite textuelle pour la génération de la vidéo."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit le seed."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "identifiant_génération",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoEditNode": {
+    "description": "Re-générez une vidéo existante avec une nouvelle invite en utilisant Luma Ray 3.2 (restyliser, rééclairer, ajouter ou supprimer des éléments) tout en conservant le mouvement original. Vidéo source jusqu’à 18 secondes ; la vidéo éditée conserve la durée de la source.",
+    "display_name": "Luma Ray 3.2 Édition vidéo",
+    "inputs": {
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "prompt": {
+        "name": "prompt",
+        "tooltip": "Décrit la modification souhaitée."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "seed",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit le seed."
+      },
+      "strength": {
+        "name": "intensité",
+        "tooltip": "Degré de préservation ou de réinvention de la source. 'auto' laisse Ray 3.2 choisir ; adhere_* préserve au maximum, flex_* est équilibré, reimagine_* change le plus."
+      },
+      "video": {
+        "name": "vidéo",
+        "tooltip": "Vidéo source à éditer. Jusqu’à 18 secondes."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "identifiant_génération",
+        "tooltip": null
+      }
+    }
+  },
+  "LumaRay32VideoReframeNode": {
+    "description": "Modifiez le format d’image d’une vidéo existante, en utilisant Luma Ray 3.2 pour remplir les nouvelles zones du canevas exposées. Vidéo source jusqu’à 30 secondes. Facturation à la seconde de sortie.",
+    "display_name": "Luma Ray 3.2 Recadrage Vidéo",
+    "inputs": {
+      "aspect_ratio": {
+        "name": "format d’image"
+      },
+      "control_after_generate": {
+        "name": "contrôle après génération"
+      },
+      "prompt": {
+        "name": "invite",
+        "tooltip": "Décrit comment les nouvelles zones du canevas doivent être remplies."
+      },
+      "resolution": {
+        "name": "résolution"
+      },
+      "seed": {
+        "name": "graine",
+        "tooltip": "Graine pour déterminer si le nœud doit être relancé ; les résultats sont non déterministes quel que soit la graine."
+      },
+      "video": {
+        "name": "vidéo",
+        "tooltip": "Vidéo source à recadrer. Jusqu’à 30 secondes."
+      }
+    },
+    "outputs": {
+      "0": {
+        "tooltip": null
+      },
+      "1": {
+        "name": "identifiant_génération",
+        "tooltip": null
+      }
+    }
+  },
   "LumaReferenceNode": {
     "description": "Contient une image et un poids à utiliser avec le nœud Luma Générer Image.",
     "display_name": "Référence Luma",
